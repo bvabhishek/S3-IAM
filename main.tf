@@ -25,7 +25,7 @@ resource "aws_iam_policy" "policy_user_1" {
         "s3:*"
       ],
       "Effect": "Allow",
-      "Resource": "${aws_s3_bucket.ases3.arn}/*"
+      "Resource": "${aws_s3_bucket.SeaSidesbucket.arn}/*"
     }
   ]
 }
@@ -54,7 +54,7 @@ resource "aws_iam_policy" "policy_user_2" {
         "s3:*"
       ],
       "Effect": "Allow",
-      "Resource": "${aws_s3_bucket.ases3.arn}/*"
+      "Resource": "${aws_s3_bucket.SeaSidesbucket.arn}/*"
     }
   ]
 }
@@ -111,7 +111,7 @@ resource "aws_iam_policy" "policy_user_3" {
         "s3:*"
       ],
       "Effect": "Allow",
-      "Resource": "${aws_s3_bucket.ases3.arn}/*"
+      "Resource": "${aws_s3_bucket.SeaSidesbucket.arn}/*"
     }
   ]
 }
@@ -122,6 +122,44 @@ resource "aws_iam_user_policy_attachment" "policy_user_3" {
   user       = aws_iam_user.user_three.name
   policy_arn = aws_iam_policy.policy_user_3.arn
 }
+
+
+//user 4 
+
+
+resource "aws_iam_user" "user_four" {
+  name = "seasides-user4"
+}
+
+resource "aws_iam_user_login_profile" "user_four" {
+  user                    = aws_iam_user.user_four.name
+  password_reset_required = true
+}
+
+resource "aws_iam_policy" "policy_user_4" {
+  name   = "seasides-user4-policy"
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "s3:*"
+      ],
+      "Effect": "Allow",
+      "Resource": "${aws_s3_bucket.SeaSidesbucket.arn}"
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_user_policy_attachment" "policy_user_4" {
+  user       = aws_iam_user.user_four.name
+  policy_arn = aws_iam_policy.policy_user_4.arn
+}
+
+
 
 resource "aws_iam_access_key" "create_user_access_key1" {
   user = aws_iam_user.user_one.name
@@ -134,3 +172,8 @@ resource "aws_iam_access_key" "create_user_access_key2" {
 resource "aws_iam_access_key" "create_user_access_key3" {
   user = aws_iam_user.user_three.name
 }
+
+resource "aws_iam_access_key" "create_user_access_key4" {
+  user = aws_iam_user.user_four.name
+}
+
