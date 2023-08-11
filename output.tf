@@ -5,8 +5,8 @@ variable "aws_region" {
 
 output "s3bucketname" {
   value = {
-    BucketName = aws_s3_bucket.ases3.bucket
-    arn        = aws_s3_bucket.ases3.arn
+    BucketName = aws_s3_bucket.SeaSidesbucket.bucket
+    arn        = aws_s3_bucket.SeaSidesbucket.arn
   }
 }
 
@@ -37,6 +37,17 @@ output "User3" {
     AccessKey = aws_iam_access_key.create_user_access_key3.id
     SecretKey = aws_iam_access_key.create_user_access_key3.secret
     arn       = aws_iam_user.user_three.arn
+
+  }
+  sensitive = true
+}
+
+output "User4" {
+  value = {
+    UserName  = aws_iam_user.user_four.name,
+    AccessKey = aws_iam_access_key.create_user_access_key4.id
+    SecretKey = aws_iam_access_key.create_user_access_key4.secret
+    arn       = aws_iam_user.user_four.arn
 
   }
   sensitive = true
