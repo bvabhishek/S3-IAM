@@ -159,7 +159,16 @@ terraform destroy -auto-approve
 
 ### Conclusion:
 
-Best Security Practices 
+Best Security Practices & why to use IAM with your S3
 
-1. Least Privilege Principle 
+1. Data Confidentiality and Integrity: IAM policies allow you to control who can read, write, and modify objects in your S3 buckets. By crafting policies based on user roles and responsibilities, you can ensure that sensitive data is only accessible to authorized users
 
+2. Bucket-Level Access: IAM policies can restrict users to specific S3 buckets. This is particularly useful for isolating data and ensuring that users can only access the buckets they are authorized to use.
+
+3. Object-Level Access: You can use IAM policies to grant read or write access to specific objects within a bucket. This can prevent unauthorized users from accessing specific files while still allowing them to work with other files in the same bucket.
+
+4. Shared Buckets: If you have shared buckets across different teams or departments, IAM policies allow you to control access on a per-user basis. Each team can have its own IAM policy to access the shared bucket without compromising security.
+
+5. Temporary Access: IAM policies can provide temporary access to objects. For example, you can grant temporary access to contractors for specific tasks and automatically revoke the access when the task is complete.
+
+6. Helps to organise your bucket access in your organisation according to their privileges required. 
