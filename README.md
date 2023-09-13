@@ -103,7 +103,7 @@ Here, we get the error saying - An error occurred (AccessDenied) when calling th
 * Let's try if we can download/copy objects from S3 bucket which is restricted in the permission boundary policy for User 1.
 
 ```bash
-aws s3 cp s3://$s3bucket/ss.mp4 /home/abhi/seasides/  --profile user3
+aws s3 cp s3://$s3bucket/ss.mp4 /home/abhi/seasides/  --profile user1
 ```
 We can see the error - An error occurred (AccessDenied) when calling the GetObject operation: Access Denied
 
@@ -121,7 +121,7 @@ We get the error - An error occurred (AccessDenied) when calling the ListObject 
 * Let's try if we can retrieve objects from amazon S3 which is not provided in the permission boundary policy for User 2.
 
 ```bash
-aws s3 cp s3://$s3bucket/ss.mp4 /home/abhi/seasides/  --profile user3
+aws s3 cp s3://$s3bucket/ss.mp4 /home/abhi/seasides/  --profile user2
 ```
 We can see the error - An error occurred (AccessDenied) when calling the GetObject operation: Access Denied
 
