@@ -145,6 +145,25 @@ We can see that the user 3 is successfully able to view and access the file ss.m
 
 Considering all the three scenarios, it is seen that the bucket policy is evaluated first and then IAM policies attached to respective users. Even if one of the policy has a Deny access to User, User wont be able to perform any action on it as there is a Deny policy on it.
 
+
+* <b> Let's evaluate how policy evaluation works for IAM User 4 for S3 bucket and its object. </b>
+
+Finally, Lets check the User3 accessability on the bucket. Both bucket policy as well as IAM policy provides Allow access on bucket also, there is no sign of permission boundry. Lets check with the same cli commands
+
+```bash
+aws s3 ls s3://$s3bucket --profile User4
+```
+We get the output as expected. We can see that User 4 has access to list the object and the ase.png object in the bucket is seen.
+
+* Let's try if we can download objects from S3 bucket.
+
+```bash
+aws s3 cp s3://$s3bucket/ss.mp4 .  --profile User4
+```
+We can see that the user 3 is successfully able to view but not access the file ss.mp4 in the desired directory.
+
+Considering all the three scenarios, it is seen that the bucket policy is evaluated first and then IAM policies attached to respective users. Even if one of the policy has a Deny access to User, User wont be able to perform any action on it as there is a Deny policy on it.
+
 Let's clean up all the resources created by Terraform.
 
 * Step 1: Go to the iam-playground directory
