@@ -160,7 +160,7 @@ We get the output as expected. We can see that User 4 has access to list the obj
 ```bash
 aws s3 cp s3://$s3bucket/ss.mp4 .  --profile User4
 ```
-We can see that the user 3 is successfully able to view but not access the file ss.mp4 in the desired directory.
+We can see that the user 4 is successfully able to view but not access the file ss.mp4 in the desired directory.
 
 Considering all the three scenarios, it is seen that the bucket policy is evaluated first and then IAM policies attached to respective users. Even if one of the policy has a Deny access to User, User wont be able to perform any action on it as there is a Deny policy on it.
 
